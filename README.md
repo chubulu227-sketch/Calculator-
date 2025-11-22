@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>calculator.in</title>
-    <link rel="stylesheet" href="style.css">
     <style>
         *{
     margin: 0px;
@@ -115,6 +114,40 @@ h1{
         </div>
         </div>
     </div>
-    <script src="first.js"></script>
+    <script>// Select the input display
+let display = document.getElementById("input");
+
+// Select all buttons
+let buttons = document.querySelectorAll("button");
+
+// Variable to store the current input
+let expression = "";
+
+// Loop through each button
+buttons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+        let buttonValue = e.target.innerText;
+if (buttonValue === "AC") {
+            // Clear display
+            expression = "";
+            display.value = "";
+        } 
+        else if (buttonValue === "=") {
+            try {
+                // Evaluate the expression
+                expression = eval(expression);
+                display.value = expression;
+            } catch (error) {
+                display.value = "Error";
+                expression = "";
+            }
+        } 
+        else {
+            // Append the clicked button value to the expression
+            expression += buttonValue;
+            display.value = expression;
+        }
+    });
+});</script>
 </body>
 </html>
